@@ -1,0 +1,52 @@
+<div class="container-fluid p-0">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3 p-0">
+        <ul class="list-group list-group-flush">
+          <li><a routerLink="/" class="list-group-item" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+          <li><a routerLink="/sortByName" class="list-group-item" routerLinkActive="active" (click)="sortByName()">Sort
+              By Name</a></li>
+          <li><a routerLink="/sortByJoiningDate" class="list-group-item" routerLinkActive="active"
+              (click)="sortByJoiningDate()">Sort By Joining
+              Date</a></li>
+          <li><a routerLink="/searchByName" class="list-group-item" routerLinkActive="active">Search By Name</a></li>
+          <li><a routerLink="/experienceCandidate" class="list-group-item" routerLinkActive="active"
+              (click)="findEmployeeByExperience()">Find Employee By
+              Experience more than 2 years</a></li>
+          <li><a routerLink="/distinctDepartment" class="list-group-item" routerLinkActive="active"
+              (click)="getDistictDepartment()">Get Distict
+              Department</a></li>
+          <li><a routerLink="/countByDistinctDepartment" class="list-group-item" routerLinkActive="active"
+              (click)="getDistictDepartmentCandidateCount()">Get Distict
+              Department Candidate Count</a></li>
+          <li><a routerLink="/removeCandidateFromDevelopmentDept" class="list-group-item" routerLinkActive="active"
+              (click)="removeCandidateFromDepartment()">Remove Candidate from "Development" Department</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-9">
+        <div class="container table-responsive-sm main">
+          <input class="form-control mb-2" type="text" placeholder="Serach by Name" [(ngModel)]="searchText" />
+          <table class="table table-striped" *ngIf="employeeInfo">
+            <thead class="thead-dark">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Joining Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let candidate of employeeInfo | search:searchText">
+                <td>{{candidate.id}}</td>
+                <td>{{candidate.name}}</td>
+                <td>{{candidate.department}}</td>
+                <td>{{candidate.joining_date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
